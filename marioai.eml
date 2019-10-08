@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component jdk="1.8" jdk_type="JavaSDK">
+	<exclude-output/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/lib"/>
+		<excludeFolder url="file://$MODULE_DIR$/src/ch/idsia/scenarios/oldscenarios"/>
+		<excludeFolder url="file://$MODULE_DIR$/src/ch/idsia/scenarios/test"/>
+		<excludeFolder url="file://$MODULE_DIR$/src/ch/idsia/unittests"/>
+	</contentEntry>
+	<lib name="asm-all-3.3.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/asm-all-3.3.jar!/"/>
+	</lib>
+	<lib name="jdom.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/jdom.jar!/"/>
+	</lib>
+	<lib name="junit-4.8.2.jar" scope="COMPILE">
+		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/junit-4.8.2.jar!/"/>
+	</lib>
+	<levels>
+		<level name="asm-all-3.3" value="project"/>
+	</levels>
+</component>
