@@ -28,9 +28,7 @@ public class Prob3OwnAgent extends BasicMarioAIAgent implements Agent {
     }
 
     public boolean[] getAction() {
-        if (isObstacle(marioEgoRow, marioEgoCol + 1)
-                || isObstacle(marioEgoRow, marioEgoCol + 2)
-                || isObstacle(marioEgoRow, marioEgoCol)) {
+        if (isObstacle(marioEgoRow, marioEgoCol + 1) || isObstacle(marioEgoRow, marioEgoCol + 2) || isObstacle(marioEgoRow, marioEgoCol)) {
             action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
         }
 
