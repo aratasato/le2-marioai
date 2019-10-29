@@ -27,6 +27,7 @@
 
 package ch.idsia.scenarios;
 
+import ch.idsia.agents.AgentsPool;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
 import ch.idsia.agents.Agent;

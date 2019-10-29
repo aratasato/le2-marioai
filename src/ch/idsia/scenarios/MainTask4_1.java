@@ -27,6 +27,7 @@
 
 package ch.idsia.scenarios;
 
+import ch.idsia.agents.AgentsPool;
 import ch.idsia.agents.controllers.Prob2OwnAgent;
 import ch.idsia.agents.controllers.Prob3OwnAgent;
 import ch.idsia.benchmark.tasks.BasicTask;
@@ -42,7 +43,8 @@ public final class MainTask4_1 {
     public static void main(String[] args) {
         final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
 
-        final Agent agent = new Prob2OwnAgent();
+        AgentsPool.addAgent(AgentsPool.loadAgent("LearningWithGA-759.0.xml", false));
+        final Agent agent = AgentsPool.getCurrentAgent();
         marioAIOptions.setAgent(agent);
 
         marioAIOptions.setArgs("-lde on -ltb off -ld 2 -ls 0 -le g");

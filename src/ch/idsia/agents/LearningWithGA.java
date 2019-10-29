@@ -11,6 +11,8 @@ import ch.idsia.tools.EvaluationInfo;
 import ch.idsia.tools.MarioAIOptions;
 import ch.idsia.utils.wox.serial.Easy;
 
+import static java.lang.Math.abs;
+
 public class LearningWithGA implements LearningAgent {
 
     /* 個体数 */
@@ -92,10 +94,12 @@ public class LearningWithGA implements LearningAgent {
             /* 突然変異 */
             mutate();
 
-            int EndEpoch = 10;
-            if (generation == EndEpoch) {
+            int EndEpoch = 400;
+            if (generation % 50 == 0) {
                 System.out.println("Generation[" + generation + "] : Playing!");
                 halfwayPlayMario(bestAgent);
+            }
+            if (generation == EndEpoch) {
                 System.out.println("Learning is stopped");
                 break;
             }
@@ -137,9 +141,9 @@ public class LearningWithGA implements LearningAgent {
 
             /* 評価値(距離)をセット */
             EvaluationInfo evaluationInfo = basicTask.getEvaluationInfo();
-            agents[i].setFitness(evaluationInfo.distancePassedCells);
+            agents[i].setFitness(evaluationInfo.computeWeightedFitness());
 
-            agents[i].setDistance(evaluationInfo.distancePassedCells);
+            agents[i].setDistance(evaluationInfo.computeWeightedFitness());
 
         }
 
@@ -154,7 +158,7 @@ public class LearningWithGA implements LearningAgent {
         if (presentBestAgentDistance > fmax) {
             bestAgent = (Agent) agents[0].clone();    //bestAgentを更新
             fmax = presentBestAgentDistance;    //fmax更新
-//			writeFile();			//bestAgentのxmlを出力
+			writeFile(fmax);			//bestAgentのxmlを出力
             System.out.println("fmax : " + fmax);
         }
         return;
@@ -259,6 +263,7 @@ public class LearningWithGA implements LearningAgent {
 
         /* ステージ生成 */
         marioAIOptions.setArgs(this.args);
+        marioAIOptions.setFPS(10000);
 
 
         /* プレイ画面出力するか否か */
@@ -306,9 +311,9 @@ public class LearningWithGA implements LearningAgent {
     }
 
     /* xml作成 */
-    private void writeFile() {
+    private void writeFile(float fmax) {
         String fileName = name + "-"
-                + GlobalOptions.getTimeStamp() + ".xml";
+                + fmax + ".xml";
         Easy.save(bestAgent, fileName);
     }
 
