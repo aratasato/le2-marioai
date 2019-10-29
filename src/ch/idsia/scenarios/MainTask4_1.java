@@ -27,6 +27,8 @@
 
 package ch.idsia.scenarios;
 
+import ch.idsia.agents.controllers.Prob2OwnAgent;
+import ch.idsia.agents.controllers.Prob3OwnAgent;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
 import ch.idsia.agents.Agent;
@@ -40,7 +42,7 @@ public final class MainTask4_1 {
     public static void main(String[] args) {
         final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
 
-        final Agent agent = new IgnoreObstacleAgent();
+        final Agent agent = new Prob2OwnAgent();
         marioAIOptions.setAgent(agent);
 
         marioAIOptions.setArgs("-lde on -ltb off -ld 2 -ls 0 -le g");
