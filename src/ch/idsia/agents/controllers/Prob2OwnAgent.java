@@ -18,7 +18,7 @@ public class Prob2OwnAgent extends BasicMarioAIAgent implements Agent {
     public void reset() {
         action = new boolean[Environment.numberOfKeys];
         action[Mario.KEY_RIGHT] = true;
-//        action[Mario.KEY_SPEED] = true;
+        action[Mario.KEY_SPEED] = true;
     }
 
     private boolean isObstacle(int r, int c) {
@@ -35,12 +35,8 @@ public class Prob2OwnAgent extends BasicMarioAIAgent implements Agent {
             action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
         }
 
-        if (!isObstacle(marioEgoRow - 3, marioEgoCol + 7) && isObstacle(marioEgoRow, marioEgoCol + 8)) {
+        if (!isObstacle(marioEgoRow + 8, marioEgoCol + 7) && isObstacle(marioEgoRow, marioEgoCol + 8)) {
             action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
-        }
-
-        if (!isMarioOnGround) {
-            action[Mario.KEY_SPEED] = true;
         }
 
         return action;

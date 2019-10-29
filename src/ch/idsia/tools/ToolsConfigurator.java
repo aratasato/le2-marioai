@@ -33,7 +33,7 @@ import ch.idsia.benchmark.mario.engine.GlobalOptions;
 import ch.idsia.benchmark.mario.engine.MarioVisualComponent;
 import ch.idsia.benchmark.mario.engine.level.LevelGenerator;
 import ch.idsia.benchmark.mario.simulation.SimulationOptions;
-import ch.idsia.scenarios.oldscenarios.MainRun;
+//import ch.idsia.scenarios.oldscenarios.MainRun;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
