@@ -3,6 +3,7 @@ package ch.idsia.agents;
 import java.util.Random;
 
 import ch.idsia.agents.controllers.BasicMarioAIAgent;
+import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.Environment;
 import ch.idsia.evolution.Evolvable;
 
@@ -134,6 +135,18 @@ implements Agent,Evolvable,Comparable,Cloneable{
 		for(int i=0; i<Environment.numberOfKeys; i++){
 			action[i] = (act %2 == 1);	//2で割り切れるならtrue
 			act /= 2;
+		}
+
+		// for 4-1
+		if (distancePassedCells >= 95 && distancePassedCells < 127) {
+			action[Mario.KEY_RIGHT] = true;
+			action[Mario.KEY_SPEED] = false;
+			if (distancePassedCells >= 98) {
+				action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
+			}
+			if (distancePassedCells >= 105) {
+				action[Mario.KEY_SPEED] = true;
+			}
 		}
 
 		return action;

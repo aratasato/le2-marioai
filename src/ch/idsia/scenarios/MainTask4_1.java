@@ -43,7 +43,7 @@ public final class MainTask4_1 {
     public static void main(String[] args) {
         final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
 
-        AgentsPool.addAgent(AgentsPool.loadAgent("LearningWithGA-759.0.xml", false));
+        AgentsPool.addAgent(AgentsPool.loadAgent("LearningWithGA-8702.0.xml", false));
         final Agent agent = AgentsPool.getCurrentAgent();
         marioAIOptions.setAgent(agent);
 
