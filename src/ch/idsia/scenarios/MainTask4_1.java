@@ -27,6 +27,9 @@
 
 package ch.idsia.scenarios;
 
+import ch.idsia.agents.AgentsPool;
+import ch.idsia.agents.controllers.Prob2OwnAgent;
+import ch.idsia.agents.controllers.Prob3OwnAgent;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.tools.MarioAIOptions;
 import ch.idsia.agents.Agent;
@@ -36,21 +39,20 @@ import ch.idsia.agents.controllers.IgnoreObstacleAgent;
  * Created by IntelliJ IDEA. User: Sergey Karakovskiy, sergey at idsia dot ch Date: Mar 17, 2010 Time: 8:28:00 AM
  * Package: ch.idsia.scenarios
  */
-public final class MainTask4_1
-{
-public static void main(String[] args)
-{
-    final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
+public final class MainTask4_1 {
+    public static void main(String[] args) {
+        final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
 
-    final Agent agent = new IgnoreObstacleAgent();
-    marioAIOptions.setAgent(agent);
-    
-    marioAIOptions.setArgs("-lde on -ltb off -ld 2 -ls 0 -le g");
-    
-    final BasicTask basicTask = new BasicTask(marioAIOptions);
-    basicTask.setOptionsAndReset(marioAIOptions);
-    basicTask.doEpisodes(1,true,1);
-    System.exit(0);
-}
+        AgentsPool.addAgent(AgentsPool.loadAgent("4-1clearGA.xml", false));
+        final Agent agent = AgentsPool.getCurrentAgent();
+        marioAIOptions.setAgent(agent);
+
+        marioAIOptions.setArgs("-lde on -ltb off -ld 2 -ls 0 -le g");
+
+        final BasicTask basicTask = new BasicTask(marioAIOptions);
+        basicTask.setOptionsAndReset(marioAIOptions);
+        basicTask.doEpisodes(1, true, 1);
+        System.exit(0);
+    }
 
 }
