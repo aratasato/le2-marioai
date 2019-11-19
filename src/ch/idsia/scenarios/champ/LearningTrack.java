@@ -29,8 +29,7 @@ package ch.idsia.scenarios.champ;
 
 import ch.idsia.agents.Agent;
 import ch.idsia.agents.LearningAgent;
-import ch.idsia.agents.LearningWithAStar;
-import ch.idsia.agents.LearningWithGA;
+import ch.idsia.agents.LearningWithAS;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.benchmark.tasks.LearningTask;
 import ch.idsia.tools.EvaluationInfo;
@@ -206,10 +205,10 @@ public final class LearningTrack {
         /* 学習に用いるAgentを指定 */
 
         /* MainTask4_1.java */
-        LearningAgent learningAgent = new LearningWithGA("-lde on -ltb off -ld 2 -ls 0 -le g");
+//        LearningAgent learningAgent = new LearningWithGA("-lde on -ltb off -ld 2 -ls 0 -le g");
 
         /* MainTask4_2.java */
-        // LearningAgent learningAgent = new LearningWithGA("-lco off -lb on -le off -lhb off -lg on -ltb on -lhs off -lca on -lde on -ld 5 -ls 133829");
+         LearningAgent learningAgent = new LearningWithAS("-lco off -lb on -le off -lhb off -lg on -ltb on -lhs off -lca on -lde on -ld 5 -ls 133829");
 
         /* MainTask4_3.java */
         // LearningAgent learningAgent = new LearningWithGA("-lde on -i off -ld 30 -ls 133434 -lhb on");

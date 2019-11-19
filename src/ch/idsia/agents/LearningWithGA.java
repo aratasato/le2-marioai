@@ -3,7 +3,6 @@ package ch.idsia.agents;
 import java.util.Arrays;
 import java.util.Random;
 
-import ch.idsia.benchmark.mario.engine.GlobalOptions;
 import ch.idsia.benchmark.mario.environments.Environment;
 import ch.idsia.benchmark.tasks.BasicTask;
 import ch.idsia.benchmark.tasks.LearningTask;
@@ -26,7 +25,7 @@ public class LearningWithGA implements LearningAgent {
 
     //	private LearningTask task = null;
     private String name = "LearningWithGA";
-    private GAAgent[] agents;
+    private GAAgent4_2[] agents;
     private Agent bestAgent;
     private String args;
     /* 評価時最大値保持用変数 */
@@ -48,9 +47,9 @@ public class LearningWithGA implements LearningAgent {
         fmax = 0;
 
         /* 個体数分だけAgentを作成 */
-        agents = new GAAgent[popsize];
+        agents = new GAAgent4_2[popsize];
         for (int i = 0; i < agents.length; i++) {
-            agents[i] = new GAAgent();
+            agents[i] = new GAAgent4_2();
         }
 
         /* agent[0] をbestAgentとして初期化 */
@@ -68,9 +67,9 @@ public class LearningWithGA implements LearningAgent {
             /* 100個体の評価 */
 
             compFit();
-            GAAgent nextagents[] = new GAAgent[popsize];
+            GAAgent4_2[] nextagents = new GAAgent4_2[popsize];
             for (int i = bestnum; i < popsize; i++) {
-                nextagents[i] = new GAAgent();
+                nextagents[i] = new GAAgent4_2();
             }
 
 
@@ -225,7 +224,7 @@ public class LearningWithGA implements LearningAgent {
     }
 
     /* 交叉 */
-    private void cross(GAAgent[] nextagents, int[] parentsGene, int i) {
+    private void cross(GAAgent4_2[] nextagents, int[] parentsGene, int i) {
 
         int geneLength = (1 << 16);
 

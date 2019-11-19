@@ -1,17 +1,17 @@
 package ch.idsia.agents;
 
-import java.util.Random;
-
 import ch.idsia.agents.controllers.BasicMarioAIAgent;
 import ch.idsia.benchmark.mario.engine.sprites.Mario;
 import ch.idsia.benchmark.mario.environments.Environment;
 import ch.idsia.evolution.Evolvable;
 
+import java.util.Random;
+
 /*
  * シフト演算子 x << y
  * xをyビットだけ左シフトする。空いた下位ビット(右側)には0を挿入。
  */
-public class GAAgent extends BasicMarioAIAgent
+public class GAAgent4_2 extends BasicMarioAIAgent
 implements Agent,Evolvable,Comparable,Cloneable{
 
 	static String name = "GAAgent";
@@ -29,7 +29,7 @@ implements Agent,Evolvable,Comparable,Cloneable{
 	Random r = new Random();
 
 	/* コンストラクタ */
-	public GAAgent(){
+	public GAAgent4_2(){
 
 		super(name);
 
@@ -92,7 +92,7 @@ implements Agent,Evolvable,Comparable,Cloneable{
 
 	/* 降順にソート */
 	public int compareTo(Object obj){
-	   	GAAgent otherUser = (GAAgent) obj;
+	   	GAAgent4_2 otherUser = (GAAgent4_2) obj;
     	return -(this.fitness - otherUser.getFitness());
 	}
 
@@ -137,18 +137,6 @@ implements Agent,Evolvable,Comparable,Cloneable{
 			act /= 2;
 		}
 
-		// for 4-1
-		if (distancePassedCells >= 95 && distancePassedCells < 127) {
-			action[Mario.KEY_RIGHT] = true;
-			action[Mario.KEY_SPEED] = false;
-			if (distancePassedCells >= 98) {
-				action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
-			}
-			if (distancePassedCells >= 105) {
-				action[Mario.KEY_SPEED] = true;
-			}
-		}
-
 		return action;
 	}
 
@@ -183,11 +171,11 @@ implements Agent,Evolvable,Comparable,Cloneable{
 	}
 
 	@Override
-	public GAAgent clone(){
+	public GAAgent4_2 clone(){
 
-		GAAgent res = null;
+		GAAgent4_2 res = null;
 		try{
-			res = (GAAgent)super.clone();
+			res = (GAAgent4_2)super.clone();
 		}catch(CloneNotSupportedException e){
 			throw new InternalError(e.toString());
 		}
