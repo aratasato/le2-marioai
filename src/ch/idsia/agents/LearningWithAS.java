@@ -25,12 +25,15 @@ public class LearningWithAS implements LearningAgent {
 
     private int bestDistance = 0;
 
+    private String filename;
+
 
     /* LearningWithAStarのコンストラクタ */
-    public LearningWithAS(String args) {
+    public LearningWithAS(String args, String filename) {
         agent = new ASAgent();
         bestAgent = agent.clone();
         this.args = args;
+        this.filename = filename;
     }
 
     // 学習
@@ -90,7 +93,7 @@ public class LearningWithAS implements LearningAgent {
                 byte[] actions = agent.getActions();
                 ASAgent clearAgent = new ASAgent();
                 clearAgent.setActions(actions);
-                writeFile(clearAgent, "AS4-3", evaluationInfo.distancePassedCells);
+                writeFile(clearAgent, this.filename, evaluationInfo.distancePassedCells);
                 break;
             }
 
@@ -112,7 +115,6 @@ public class LearningWithAS implements LearningAgent {
             System.out.println("MarioAI: out of computational time"
                     + " per action! Agent disqualified!");
         }
-
     }
 
     /* 次のactionsを決定する

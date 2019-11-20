@@ -208,12 +208,12 @@ public final class LearningTrack {
 //        LearningAgent learningAgent = new LearningWithGA("-lde on -ltb off -ld 2 -ls 0 -le g");
 
         /* MainTask4_2.java */
-         LearningAgent learningAgent = new LearningWithAS("-lco off -lb on -le off -lhb off -lg on -ltb on -lhs off -lca on -lde on -ld 5 -ls 133829");
+//         LearningAgent learningAgent = new LearningWithAS("-lco off -lb on -le off -lhb off -lg on -ltb on -lhs off -lca on -lde on -ld 5 -ls 133829");
 
         /* MainTask4_3.java */
         // LearningAgent learningAgent = new LearningWithGA("-lde on -i off -ld 30 -ls 133434 -lhb on");
 
-        System.out.println("main.learningAgent = " + learningAgent);
+//        System.out.println("main.learningAgent = " + learningAgent);
 
         /* パラメータを設定する */
         MarioAIOptions marioAIOptions = new MarioAIOptions(args);
@@ -274,10 +274,10 @@ public final class LearningTrack {
 //    finalScore += LearningTrack.evaluateSubmission(marioAIOptions, learningAgent);
 
         /* 学習後の得点をfinalScoreに保存し画面へ出力 */
-        float finalScore = LearningTrack.evaluateSubmission(marioAIOptions, learningAgent);
+//        float finalScore = LearningTrack.evaluateSubmission(marioAIOptions, learningAgent);
 
 
-        System.out.println("finalScore = " + finalScore);
+//        System.out.println("finalScore = " + finalScore);
         System.exit(0);
     }
 }
