@@ -5,6 +5,6 @@
 	<classpathentry exported="true" kind="lib" path="lib/asm-all-3.3.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdom.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/junit-4.8.2.jar"/>
-	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/asm-all-3.3"/>
-	<classpathentry kind="output" path="bin"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/asm-all-3.3"/>
+	<classpathentry kind="output" path="out/production/marioai"/>
 </classpath>
