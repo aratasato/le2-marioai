@@ -9,10 +9,10 @@ import ch.idsia.utils.wox.serial.Easy;
 
 import java.util.HashMap;
 
-public class LearningWithAS implements LearningAgent {
+public class Learn4 implements LearningAgent {
 
-    private ASAgent agent;
-    private ASAgent bestAgent;
+    private Task4Agent agent;
+    private Task4Agent bestAgent;
     private String args;
     // actionsのインデックス
     private static int actionIndex = 0;
@@ -29,8 +29,8 @@ public class LearningWithAS implements LearningAgent {
 
 
     /* LearningWithAStarのコンストラクタ */
-    public LearningWithAS(String args, String filename) {
-        agent = new ASAgent();
+    public Learn4(String args, String filename) {
+        agent = new Task4Agent();
         bestAgent = agent.clone();
         this.args = args;
         this.filename = filename;
@@ -91,7 +91,7 @@ public class LearningWithAS implements LearningAgent {
             // クリアしたらループを抜ける
             if (evaluationInfo.distancePassedCells >= 256 && evaluationInfo.marioMode == 2) {
                 byte[] actions = agent.getActions();
-                ASAgent clearAgent = new ASAgent();
+                Task4Agent clearAgent = new Task4Agent();
                 clearAgent.setActions(actions);
                 writeFile(clearAgent, this.filename, evaluationInfo.distancePassedCells);
                 break;
@@ -99,7 +99,7 @@ public class LearningWithAS implements LearningAgent {
 
 
             // 次の世代のagentを用意
-            ASAgent nextAgent = getNextAgent(agent);
+            Task4Agent nextAgent = getNextAgent(agent);
 
             // agentにコピー
             agent = nextAgent.clone();
@@ -118,29 +118,31 @@ public class LearningWithAS implements LearningAgent {
     }
 
     /* 次のactionsを決定する
-     * actionIndex：死んだ時のindex
-     * damagedIndex：ダメージを受けた時のindex
+     * actionIndex：死んだindex
+     * damagedIndex：ダメージを受けたindex
      * deathPoint：死んだ地点
      */
-    private ASAgent getNextAgent(ASAgent agent) {
-        ASAgent nextAgent = new ASAgent();
+    private Task4Agent getNextAgent(Task4Agent agent) {
+        Task4Agent nextAgent = new Task4Agent();
         byte[] actions = agent.getActions();
 
-        // 巻き戻すインデックス
+        // 巻き戻すインデックス.死んだインデックスからいくらかactionを忘却する．そこで死んだ回数が多いほど多く巻き戻す．
         int rewindIndex = Math.max(deathPoints.get(deathPoint) / 15, 0);
 
-        // ダメージを受けた時
+        // ダメージを受けた時もダメージを受けたところから10アクション分忘却
         if (damagedIndex < actionIndex && damagedIndex != 0) {
             for (int i = damagedIndex - 10; i < actions.length; i++) {
                 actions[i] = 0;
             }
         }
-        // 行き詰まった時
+
+        // 行き詰まった時は30アクション
         if (agent.getIsDeadEnd()) {
             for (int i = agent.getDeadEndIndex() - 30; i < actions.length; i++) {
                 actions[i] = 0;
             }
         }
+
         // 同じ場所で死に過ぎたらカウントを初期化
         if (rewindIndex > actionIndex) {
             deathPoints.put(deathPoint, 1);
@@ -150,6 +152,7 @@ public class LearningWithAS implements LearningAgent {
                 actions[i] = 0;
             }
         }
+
         // 普通に死んだ時
         for (int i = actionIndex - 10; i < actions.length; i++) {
             actions[i] = 0;

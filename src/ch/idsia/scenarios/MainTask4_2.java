@@ -41,7 +41,7 @@ public final class MainTask4_2 {
     public static void main(String[] args) {
         final MarioAIOptions marioAIOptions = new MarioAIOptions(args);
 
-        AgentsPool.addAgent(AgentsPool.loadAgent("AS4_2_256.xml", false));
+        AgentsPool.addAgent(AgentsPool.loadAgent("4_2clear_256.xml", false));
         final Agent agent = AgentsPool.getCurrentAgent();
         marioAIOptions.setAgent(agent);
 
