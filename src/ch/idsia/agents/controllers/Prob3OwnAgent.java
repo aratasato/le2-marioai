@@ -44,20 +44,24 @@ public class Prob3OwnAgent extends BasicMarioAIAgent implements Agent {
         action[Mario.KEY_RIGHT] = true;
         action[Mario.KEY_SPEED] = false;
 
+        //  前に障害物があったらジャンプ
         if (isObstacle(marioEgoRow, marioEgoCol + 1) || isObstacle(marioEgoRow, marioEgoCol + 2)) {
             action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
             action[Mario.KEY_SPEED] = true;
         }
 
+        // 穴を避ける
         if (!isObstacle(marioEgoRow - 3, marioEgoCol + 7) && isObstacle(marioEgoRow, marioEgoCol + 8)) {
             action[Mario.KEY_JUMP] = isMarioAbleToJump || !isMarioOnGround;
         }
 
+        // 敵がいたらジャンプ
         if (existsGoombaInFront(2) && isMarioOnGround) {
             action[Mario.KEY_RIGHT] = false;
             action[Mario.KEY_JUMP] = isMarioAbleToJump;
         }
 
+        // 敵がいたら攻撃
         if (existsGoombaInFront(6) && isMarioAbleToShoot) {
             action[Mario.KEY_RIGHT] = false;
             action[Mario.KEY_SPEED] = true;
